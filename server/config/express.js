@@ -5,6 +5,10 @@ const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+//Load custom module routes
+const routes = require("./routes");
+
+
 // Define the Express configuration method
 module.exports = function() {
 	// Create a new Express application instance
@@ -23,6 +27,9 @@ module.exports = function() {
 	// Configure static file serving
 	app.use('/', express.static(path.resolve('./public')));
 	
+	//API endpoint
+	app.use('/api',routes);
+
 	// Return the Server instance
 	return server;
 };
